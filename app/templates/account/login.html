@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% from "snipple/macro.html" import navigation with context %}
+
+{% block subtitle %}Login{% endblock %}
+
+{% block nav %}
+  {{ navigation('login') }}
+{% endblock nav %}
+
+{% block main %}
+<div class="rows">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default form">
+      <div class="heading">Login</div>
+      <form method="POST" class="panel-body in-form">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}
+        {{ form.username(class='form-control') }}
+        {{ form.password.label }}
+        {{ form.password(class='form-control') }}
+        {{ form.remember_me.label }}
+        {{ form.remember_me(class="checkbox") }}
+        <div class="sep10"></div>
+        {{ form.submit(class='btn btn-inverse') }}
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock %}

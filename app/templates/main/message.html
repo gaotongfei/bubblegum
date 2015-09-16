@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import navigation with context%}
+
+{% block subtitle %}Message{% endblock %}
+
+{% block nav %}
+  {{ navigation('other') }}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="rows">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      {% for notification in notifications %}
+      <div class="panel-body add-border"
+              {% if notification.is_read == 0 %}style="background: red;"{% endif %}>
+        <a href="/user/{{ notification.from_id }}">{{ notification.from_id}}</a>
+        在<a href="/topic/{{ notification.from_post_id }}">{{ notification.from_post_title }}</a>中回复你
+        <div class="message" id={{ notification.id }}>
+        <a href="/topic/{{ notification.from_post_id }}">{{ notification.message | safe }}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+  </div>
+</div>
+{% endblock %}

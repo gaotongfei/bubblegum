@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import pagination_widget with context%}
+
+{% block subtitle %}Node - {{ node_name }}{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+  <div class="sm-panel-heading panel-heading">topics about {{ node_name }}</div>
+    {% include "snipple/posts.html" %}
+  <div class="sm-panel-heading panel-heading">
+    {{ pagination_widget(pagination, 'main.index') }}
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+  {% include "snipple/sidebar.html" %}
+  {% include "snipple/node-types.html" %}
+{% endblock %}

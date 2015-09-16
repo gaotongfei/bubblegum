@@ -1,0 +1,100 @@
+{% macro navigation(current='index') %}
+<div class="container">
+{% if current_user.is_authenticated() %}
+  <ul class="nav navbar-nav">
+    <li {% if current == 'index' %}class="active"{% endif %}><a href="/">Bubble</a></li>
+    <li>
+      <form class="navbar-form" action="{{ url_for('main.search') }}" method="post">
+        {{ g.search_form.hidden_tag() }}
+        {{ g.search_form.search(class='form-control', placeholder='search') }}
+      </form>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="/user/{{ current_user.username }}"><img src="{{ current_user.avatar(24)}} height="20" width="20""></a></li>
+    <li><a href='/post-topic'>new</a></li>
+    <li><a href="/user/{{ current_user.username }}">{{ current_user.username }}</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="/message/{{ current_user.username }}">message <span class="badge">{{ message_count }}</span></a></li>
+    <li><a href="/settings/profile">settings</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="/logout">logout</a></li>
+  </ul>
+{% else %}
+  <ul class="nav navbar-nav">
+    <li {% if current == 'index' %}class="active"{% endif %}><a href="/">Bubble</a></li>
+    <li>
+      <form class="navbar-form" action="{{ url_for('main.search') }}" method="post">
+        {{ g.search_form.hidden_tag() }}
+        {{ g.search_form.search(class='form-control', placeholder='search') }}
+      </form>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li {% if current == 'signup' %}class="active"{% endif %}><a href="{{ url_for('account.signup') }}">Signup</a></li>
+    <li {% if current == 'login' %}class="active"{% endif %}><a href="{{ url_for('account.login')}}">Login</a></li>
+  </ul>
+{% endif %}
+</div>
+{% endmacro %}
+
+{% macro pagination_widget(pagination, endpoint) %}
+<ul class="pagination-plain" style="height: 15px;">
+  <li {% if not pagination.has_prev %} class="disable"{% endif %}>
+  <a class="fui-arrow-left" href="{% if pagination.has_prev %}{{ url_for(endpoint,page=pagination.page-1, **kwargs) }}{% else %}#{% endif %}"></a>
+  </li>
+  {% for p in pagination.iter_pages() %}
+    {% if p %}
+      {% if p == pagination.page %}
+        <li class="active">
+        <a href="{{ url_for(endpoint, page=p, **kwargs) }}">{{ p }}</a>
+        </li>
+      {% else %}
+      <li>
+        <a href="{{ url_for(endpoint, page=p, **kwargs) }}">{{ p }}</a>
+      </li>
+      {% endif %}
+    {% else %}
+    <li class="disable">
+      <a href="#">&hellip;</a>
+    </li>
+    {% endif %}
+  {% endfor %}
+  <li {% if not pagination.has_next %} class="disable" {% endif %}>
+  <a class="fui-arrow-right" href="{% if pagination.has_next %}{{ url_for(endpoint, page=pagination.page+1, **kwargs) }}{% else %}#{% endif %}"></a>
+  </li>
+</ul>
+{% endmacro %}
+
+{% macro settings(type) %}
+{% if type == 'profile' %}
+<div class="panel-heading">Profile</div>
+<form method="POST" class="panel-body">
+  {{ form.hidden_tag() }}
+  {{ form.username.label }}
+  {{ form.username(class='form-control', readonly=true) }}
+  {{ form.website.label }}
+  {{ form.website(class="form-control", placeholder="website") }}
+  {{ form.bio.label }}
+  {{ form.bio(class="form-control", placeholder="bio") }}
+  <div class="sep10"></div>
+  {{ form.submit(class='btn btn-default') }}
+</form>
+{% endif %}
+{% if type == 'account' %}
+<div class="panel-heading">Account settings</div>
+<form method="POST" class="panel-body">
+  {{ account_form.hidden_tag() }}
+  {{ account_form.email.label }}
+  {{ account_form.email(class='form-control') }}
+  {{ account_form.current_password.label }}
+  {{ account_form.current_password(class='form-control') }}
+  {{ account_form.new_password.label }}
+  {{ account_form.new_password(class='form-control') }}
+  {{ account_form.retype_password.label }}
+  {{ account_form.retype_password(class='form-control') }}
+  <div class="sep10"></div>
+  {{ account_form.submit(class='btn btn-default') }}
+</form>
+{% endif %}
+{% endmacro %}

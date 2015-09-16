@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import pagination_widget with context%}
+
+{% block subtitle %}Home{% endblock %}
+
+{% block nav %}
+  {{ navigation() }}
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+    {% include "snipple/posts.html" %}
+  <div class="panel-heading">
+    {{ pagination_widget(pagination, 'main.index')}}
+  </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+  {% include "snipple/sidebar.html" %}
+  {% include "snipple/node-types.html" %}
+  {% include "snipple/statistics.html" %}
+{% endblock %}

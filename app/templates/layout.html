@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  {% block head %}
+  <title>{% block subtitle %}{% endblock %} - Bubble</title>
+
+  <!--
+  <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bower_components/pace/pace.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/flat-ui/dist/css/flat-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/pace/themes/blue/pace-theme-flash.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/css/style.css')}}">
+  -->
+  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/bootstrap-social/4.10.0/bootstrap-social.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/css/style.css')}}">
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  {% endblock %}
+</head>
+<body>
+  {% from "snipple/macro.html" import navigation with context%}
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        {% block nav %}
+          {{ navigation() }}
+        {% endblock %}
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row" id="content">
+    {% block main %}
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning">
+        <button type="button" name="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+      </div>
+      {% endfor %}
+      <div class="col-md-1"></div>
+      <div class="col-md-7 col-sm-8">
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-3 col-sm-4">
+        {% block sidebar %}{% endblock %}
+      </div>
+      <div class="col-md-1"></div>
+    {% endblock %}
+    </div>
+  </div>
+  <div id="footer">
+    {% include "snipple/footer.html" %}
+  </div>
+  </div>
+</body>
+</html>

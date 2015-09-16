@@ -1,0 +1,6 @@
+<div class="column-title">nodes</div>
+<div class="node-types">
+  {% for node in nodes %}
+    <a class="node" href="{{ url_for('nodes.topic_node', node_name=node.node) }}">{{ node.node }}</a>
+  {% endfor %}
+</div>

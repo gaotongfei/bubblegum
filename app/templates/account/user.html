@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import navigation, pagination_widget with context %}
+
+{% block subtitle %}{{ user.username }}'s Profile{% endblock %}
+
+{% block nav %}
+ {{ navigation('other') }}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="card">
+        <img src="{{ user.avatar(40) }}">
+        <div class="sep5"></div>
+        <h5>{{ user.username }}</h5>
+        {#<p>{{ user.created.strftime('%Y-%m-%d %H:%M:%S') }}</p>#}
+        <p>{% if user.bio != None %}{{ user.bio }}{% endif %}</p>
+        <p>{% if user.website != None %}<a href="{{ user.website }}">{{ user.website }}</a>{% endif %}</p>
+      </div>
+      <div class="sep30"></div>
+      <div class="panel panel-default">
+        <div class="sm-panel-heading panel-heading">Favorites
+          {% if id_titles|length > 5 %}<a class="link" style="float:right">view all</a>{% endif %}
+        </div>
+        {% if id_titles %}
+          {% for id_title in id_titles %}
+            <div class="panel-body add-border">
+              <div class="posts"><a href="/topic/{{ id_title.id }}">{{ id_title.title }}</a></div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="panel-body add-border">None</div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="sm-panel-heading panel-heading">Recent Posts
+          {% if user_posts|length>=5 %}<a class="link" style="float:right">view all</a>{% endif %}
+        </div>
+          {% if user_posts %}
+            {% for user_post in user_posts %}
+              <div class="panel-body add-border">
+                <div class="posts" style="margin-left:10px;"><a href="/topic/{{ user_post.id }}">{{ user_post.title }}</a></div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="panel-body add-border">None</div>
+          {% endif %}
+      </div>
+      <div class="panel panel-default">
+        <div class="sm-panel-heading panel-heading">Recent Replies
+          {% if user_replies|length >= 5 %}<a class="link" style="float:right">view all</a>{% endif %}
+        </div>
+          {% if user_replies %}
+            {% for user_reply in user_replies %}
+            <div class="panel-body add-border">
+              <div id="recent-replies" style="margin-left:10px;"><a href="/topic/{{ user_reply.topic_id }}">{{ user_reply.comment | safe }}</a></div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="panel-body add-border">None</div>
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+{% endblock %}

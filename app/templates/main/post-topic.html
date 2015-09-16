@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import navigation %}
+
+{% block subtitle %}Post A New Topic{% endblock %}
+
+{% block nav %}
+  {{navigation('other')}}
+{% endblock %}
+
+{% block main %}
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <center><h4>Post A New Topic</h4></center>
+      <form method="POST" class="panel-body">
+        {{ form.hidden_tag() }}
+        {{ form.title(class='form-control', placeholder='title') }}
+        <div class="sep10"></div>
+        {{ form.body(class='form-control', placeholder='body', rows=20) }}
+        <div class="sep10"></div>
+        {{ form.node(class='form-control', placeholder='choose node') }}
+        <div class="sep10"></div>
+        {{ form.submit(class='btn btn-inverse') }}
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+{% endblock %}

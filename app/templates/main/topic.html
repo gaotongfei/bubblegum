@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import navigation with context%}
+
+{% block subtitle %}Topic{% endblock %}
+
+{% block nav %}
+{{ navigation('other') }}
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-default">
+<div class="lg-panel-heading panel-heading">
+  <a href="#" class="topic-avatar"><img class="avatar" src="{{ topic.avatar }}" height="48px" width="48px"></a>
+  <div class="panel-title">
+    <h6>{{ topic.title }}</h6>
+    <a href="#" class="topic-username">{{ topic.username }}</a> ·
+    {{ time_delta(topic.post_time) }} ·
+    {{ click_count }} clicks ·
+    {% if saved %}
+      <a href="/unsave/{{ topic.id }}">unsave</a>
+    {% else %}
+      <a href="/save/{{ topic.id }}">save</a>
+    {% endif %}
+ </div>
+</div>
+<div class="panel-body">{{ topic.body_md | safe }}</div>
+</div>
+
+{% include "snipple/comment.html" %}
+
+{% endblock %}
+
+{% block sidebar %}
+{% include "snipple/sidebar.html" %}
+{% endblock %}

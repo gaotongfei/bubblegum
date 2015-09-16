@@ -1,0 +1,20 @@
+{% for post in posts %}
+<div class="panel-body post-body">
+  <table>
+  <tr>
+    <td width="60"><a href="#"><img class="avatar" src="{{ post.avatar }}"></a></td>
+    <td width="15"></td>
+    <td width="660">
+      <div class="post-title"><a href="{{ url_for('main.topic', id=post.id) }}">{{ post.title }}</a></div>
+      <span>
+        <div class="post-node"><a href="{{ url_for('nodes.topic_node', node_name=post.node) }}">{{ post.node }}</a></div>
+        <div class="post-info">
+          {{ time_delta(post.post_time) }}
+          <a href="{{ url_for('account.user', username=post.username) }}">{{ post.username }}</a>
+        </div>
+      </span>
+    </td>
+  </tr>
+  </table>
+</div>
+{% endfor %}

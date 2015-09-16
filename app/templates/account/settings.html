@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "snipple/macro.html" import navigation , settings with context %}
+
+{% block subtitle %}Settings{% endblock %}
+
+{% block nav %}
+  {{ navigation('other') }}
+{% endblock %}
+
+{% block main %}
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-3">
+    <div class="panel panel-default settings">
+      <li class="settings-head">Settings</li>
+      <li><a href="/settings/profile">Profile</a></li>
+      <li><a href="/settings/account">Account settings</a></li>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default settings">
+      {{ settings(type) }}
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+{% endblock %}

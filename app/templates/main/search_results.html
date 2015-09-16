@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block subtitle %}search{% endblock %}
+
+{% block content %}
+<h5>Search results for "{{ query }}":</h5>
+{% for result in results %}
+  <li><a href="/topic/{{ result.id }}">{{ result.title }}</a></li>
+{% endfor %}
+{% endblock %}

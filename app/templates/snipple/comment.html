@@ -1,0 +1,23 @@
+{% if comments %}
+<div class="panel panel-default">
+    {% for comment in comments %}
+    <div class="comment panel-body">
+      <div>
+        <a class='topic-username' href="/user/{{ comment.username }}">{{ comment.username }}</a>
+        <span class="comment-time">{{ time_delta(comment.comment_time) }}</span>
+        <a href="/user/{{ comment.username }}" class="comment-avatar"><img class="avatar" src="{{ comment.avatar }}" height="24" width="24"></a>
+        <div class="comment-main">{{ comment.comment | safe }}</div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if current_user.is_authenticated() %}
+<form method="POST">
+{{ form.hidden_tag() }}
+{{ form.comment.label }}
+{{ form.comment(class="form-control", rows=5) }}
+<div class="sep10"></div>
+{{ form.submit(class="btn btn-inverse") }}
+</form>
+{% endif %}

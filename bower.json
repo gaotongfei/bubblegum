@@ -1,0 +1,22 @@
+{
+  "name": "bubble",
+  "version": "0.0.0",
+  "authors": [
+    "gaotongfei <gaotongfei1995@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "flat-ui": "~2.2.2",
+    "pace": "~1.0.2",
+    "bootstrap-social": "~4.10.0"
+  }
+}

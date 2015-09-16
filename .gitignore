@@ -1,0 +1,9 @@
+*.pyc
+venv/*
+.idea/*
+*~
+__pycache__/*
+app/static/bower_components/*
+*.db
+migrations/*
+app/whoosh_index/*
