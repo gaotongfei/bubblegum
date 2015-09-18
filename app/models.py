@@ -80,6 +80,9 @@ class Nodes(db.Model):
     node = db.Column(db.String(20), unique=True)
     create_time = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def __repr__(self):
+        return '%r' % self.node
+
 
 @login_manager.user_loader
 def load_user(user_id):

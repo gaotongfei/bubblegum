@@ -29,6 +29,8 @@ def index():
     topic_num = Post.query.count()
     comment_num = Comment.query.count()
     nodes = Nodes.query.order_by(Nodes.create_time.desc()).all()
+    for n in nodes:
+        r.sadd('nodes', n)
     if current_user.is_authenticated():
         message_count = Notification.query.filter_by(to_id=current_user.username).filter_by(is_read=0).count()
         return render_template(
@@ -110,6 +112,10 @@ def topic(id):
         db.session.add(comment)
         db.session.commit()
         return redirect('/topic/' + str(id))
+    nodes = []
+    for i in list(r.smembers('nodes')):
+        a = unicode(i[2:-1].decode('unicode_escape'))
+        nodes.append(a)
 
     topic = Post.query.get_or_404(id)
     comments = Comment.query.filter_by(topic_id=id).order_by(Comment.comment_time).all()
@@ -134,7 +140,8 @@ def topic(id):
         comments=comments,
         message_count=message_count,
         click_count=click_count,
-        saved=saved
+        saved=saved,
+        nodes=nodes
     )
 
 
