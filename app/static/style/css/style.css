@@ -270,14 +270,20 @@ textarea {
   margin: 0px 0px 0px 5px;
 }
 
-#donate {
-  display: block;
-  margin: 0 auto;
-}
-
 .small-text {
   text-align: center;
   font-size: 15px;
+}
+
+.sm-panel-heading {
+  height: 40px;
+  border-bottom: 1px solid #eee !important;
+  background-color: #eee;
+}
+
+.sm-panel-heading p {
+  line-height: 40px;
+  margin-left: 5px;
 }
 
 .in-form {
@@ -295,6 +301,7 @@ textarea {
 }
 
 .panel-heading {
+  padding: 0px 5px;
   background-color: white !important;
   line-height: 35px;
   border-bottom: 0;

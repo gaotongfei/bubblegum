@@ -22,7 +22,7 @@
       </div>
       <div class="sep30"></div>
       <div class="panel panel-default">
-        <div class="sm-panel-heading panel-heading">Favorites
+        <div class="sm-panel-heading panel-heading"><p>favorites</p>
           {% if id_titles|length > 5 %}<a class="link" style="float:right">view all</a>{% endif %}
         </div>
         {% if id_titles %}
@@ -38,7 +38,7 @@
     </div>
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="sm-panel-heading panel-heading">Recent Posts
+        <div class="sm-panel-heading panel-heading"><p>recent posts</p>
           {% if user_posts|length>=5 %}<a class="link" style="float:right">view all</a>{% endif %}
         </div>
           {% if user_posts %}
@@ -52,7 +52,7 @@
           {% endif %}
       </div>
       <div class="panel panel-default">
-        <div class="sm-panel-heading panel-heading">Recent Replies
+        <div class="sm-panel-heading panel-heading"><p>recent replies</p>
           {% if user_replies|length >= 5 %}<a class="link" style="float:right">view all</a>{% endif %}
         </div>
           {% if user_replies %}
