@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def avatar(self, size):
-        return 'http://7xlj3h.com1.z0.glb.clouddn.com/avatar/%s?d=identicon&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
+        return 'https://gravatar.com/avatar/%s?d=retro&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
 
     permission = db.Column(db.Integer, default=0)
 

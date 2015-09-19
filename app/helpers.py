@@ -20,7 +20,7 @@ def time_delta(post_time):
 
 
 def gravatar_url(email, size):
-    return 'http://7xlj3h.com1.z0.glb.clouddn.com/avatar/%s?d=identicon&s=%d' % (md5(email.encode('utf-8')).hexdigest(), size)
+    return 'https://gravatar.com/avatar/%s?d=retro&s=%d' % (md5(email.encode('utf-8')).hexdigest(), size)
 
 
 def admin_required(f):
