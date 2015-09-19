@@ -27,12 +27,12 @@
         </div>
         {% if id_titles %}
           {% for id_title in id_titles %}
-            <div class="panel-body add-border">
+            <div class="panel-body items">
               <div class="posts"><a href="/topic/{{ id_title.id }}">{{ id_title.title }}</a></div>
             </div>
           {% endfor %}
         {% else %}
-          <div class="panel-body add-border">None</div>
+          <div class="panel-body items">None</div>
         {% endif %}
       </div>
     </div>
@@ -43,12 +43,12 @@
         </div>
           {% if user_posts %}
             {% for user_post in user_posts %}
-              <div class="panel-body add-border">
+              <div class="panel-body items">
                 <div class="posts" style="margin-left:10px;"><a href="/topic/{{ user_post.id }}">{{ user_post.title }}</a></div>
               </div>
             {% endfor %}
           {% else %}
-            <div class="panel-body add-border">None</div>
+            <div class="panel-body items">None</div>
           {% endif %}
       </div>
       <div class="panel panel-default">
@@ -57,12 +57,12 @@
         </div>
           {% if user_replies %}
             {% for user_reply in user_replies %}
-            <div class="panel-body add-border">
+            <div class="panel-body items">
               <div id="recent-replies" style="margin-left:10px;"><a href="/topic/{{ user_reply.topic_id }}">{{ user_reply.comment | safe }}</a></div>
             </div>
             {% endfor %}
           {% else %}
-            <div class="panel-body add-border">None</div>
+            <div class="panel-body items">None</div>
           {% endif %}
       </div>
     </div>
