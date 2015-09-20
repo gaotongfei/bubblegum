@@ -72,6 +72,7 @@ def settings(type):
                                type=type)
 
 
+'''
 @bp.route('/user/<username>', methods=['GET', 'POST'])
 def user(username):
     user = User.query.filter_by(username=username).first()
@@ -94,3 +95,4 @@ def user(username):
                            user_posts=user_posts,
                            user_replies=user_replies,
                            id_titles=id_titles)
+'''

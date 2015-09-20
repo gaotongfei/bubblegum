@@ -10,7 +10,7 @@
         <div class="post-node"><a href="{{ url_for('nodes.topic_node', node_name=post.node) }}">{{ post.node }}</a></div>
         <div class="post-info">
           {{ time_delta(post.post_time) }}
-          <a href="{{ url_for('account.user', username=post.username) }}">{{ post.username }}</a>
+          <a href="/user/noshit">{{ post.username }}</a>
         </div>
       </span>
     </td>
