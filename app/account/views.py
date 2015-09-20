@@ -1,5 +1,7 @@
-from flask import render_template, redirect, url_for, request, flash, abort
-from flask.ext.login import login_user, logout_user, login_required, current_user
+from flask import (render_template, redirect, url_for, request, flash,
+                   abort)
+from flask.ext.login import (login_user, logout_user, login_required,
+                             current_user)
 from . import bp
 from .. import db
 from ..models import User, Post, Comment
@@ -65,7 +67,9 @@ def settings(type):
                 db.session.commit()
                 return redirect(url_for('main.index'))
         account_form.email.data = user.email
-        return render_template('account/settings.html', account_form=account_form, type=type)
+        return render_template('account/settings.html',
+                               account_form=account_form,
+                               type=type)
 
 
 @bp.route('/user/<username>', methods=['GET', 'POST'])
@@ -81,7 +85,8 @@ def user(username):
         id_title['title'] = Post.query.filter_by(id=i).first().title
         id_titles.append(id_title)
 
-    user_posts = Post.query.filter_by(username=username).order_by(Post.post_time.desc()).limit(5).all()
+    user_posts = Post.query.filter_by(username=username).\
+        order_by(Post.post_time.desc()).limit(5).all()
     user_replies = Comment.query.filter_by(username=username).order_by(
         Comment.comment_time.desc()).limit(5).all()
     return render_template('account/user.html',

@@ -1,6 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, URL, EqualTo, Regexp
+from wtforms.validators import (DataRequired, Length, Email, URL,
+                                EqualTo, Regexp)
 
 
 class SignupForm(Form):
@@ -11,14 +12,17 @@ class SignupForm(Form):
                                               'username must have only letters,'
                                               'numbers, dots or undersocres')])
     password = PasswordField('password', validators=[
-        DataRequired(), Length(1, 16), EqualTo('retype_password', message='password dont match')])
+        DataRequired(), Length(1, 16),
+        EqualTo('retype_password', message='password dont match')])
     retype_password = PasswordField('retype', validators=[DataRequired()])
     submit = SubmitField('signup')
 
 
 class LoginForm(Form):
-    username = StringField('username', validators=[DataRequired(), Length(1, 16)])
-    password = PasswordField('password', validators=[DataRequired(), Length(1, 16)])
+    username = StringField('username',
+                           validators=[DataRequired(), Length(1, 16)])
+    password = PasswordField('password',
+                             validators=[DataRequired(), Length(1, 16)])
     remember_me = BooleanField('remember me')
     submit = SubmitField('login')
 
@@ -35,6 +39,7 @@ class AccountForm(Form):
     email = StringField('email', validators=[DataRequired(), Length(1, 64)])
     current_password = PasswordField('current password', validators=[DataRequired(), Length(1, 16)])
     new_password = PasswordField('new password', validators=[
-        DataRequired(), Length(1, 16), EqualTo('retype_password', message='password dont match')])
+        DataRequired(), Length(1, 16),
+        EqualTo('retype_password', message='password dont match')])
     retype_password = PasswordField('retype', validators=[DataRequired()])
     submit = SubmitField('submit')
