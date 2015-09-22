@@ -23,7 +23,8 @@ warnings.simplefilter("ignore", category=sa_exc.SAWarning)
 @bp.route('/', methods=['GET', 'POST'])
 def index():
     page = request.args.get('page', 1, type=int)
-    pagination = Post.query.order_by(Post.latest_update_time.desc()).paginate(page, per_page=15, error_out=False)
+    pagination = Post.query.order_by(Post.latest_update_time.desc()).\
+        paginate(page, per_page=15, error_out=False)
     posts = pagination.items
     user_num = User.query.count()
     topic_num = Post.query.count()
@@ -32,7 +33,8 @@ def index():
     for n in nodes:
         r.sadd('nodes', n)
     if current_user.is_authenticated():
-        message_count = Notification.query.filter_by(to_id=current_user.username).filter_by(is_read=0).count()
+        message_count = Notification.query.filter_by(
+            to_id=current_user.username).filter_by(is_read=0).count()
         return render_template(
             'main/index.html',
             posts=posts,

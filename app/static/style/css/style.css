@@ -1,4 +1,5 @@
 body {
+  background: url('../../cream_dust.png');
 }
 
 html, body {
@@ -82,15 +83,6 @@ textarea {
   height: 30px;
 }
 
-.card {
-  background: #FFF;
-  text-align: center;
-  padding: 30px 20px;
-  border-radius: 5px;
-  background-clip: padding-box;
-  box-shadow: 0 0 3px #999;
-}
-
 .sep-line {
   height: 20px;
   border-top: 1px solid #e9e9e9
@@ -127,22 +119,41 @@ textarea {
   margin-left: 80px;
 }
 
+.user-info {
+  height: 100px;
+  padding: 20px;
+}
+
 .avatar {
   float: left;
   -moz-border-radius: 49%;
   -webkit-border-radius: 50%;
 }
 
-.posts {
-  margin-left: 10px;
+.left-avatar {
+  float: left;
+  margin-left: -5px;
 }
 
-.posts a{
-  color: #4d5256;
+.user-profile {
+  position: absolute;
+  font-size: 15px;
+  right: 0px;
+  width: 200px;
+  padding-left: 10px;
 }
 
-#recent-replies a {
-  color: #4d5256;
+.other-info {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.user-posts {
+}
+
+.id {
+  font-size: 12px;
 }
 
 .md-font-size {
@@ -225,10 +236,6 @@ textarea {
   font-weight: bold;
 }
 
-.items {
-  padding: 5px 0px 5px 5px !important; 
-}
-
 .heading {
   background-color: #829aa8 !important;
   color: white;
@@ -294,7 +301,7 @@ textarea {
 .sm-panel-heading {
   height: 40px;
   border-bottom: 1px solid #eee !important;
-  background-color: #eee;
+  background-color: #F5F5F5;
 }
 
 .sm-panel-heading p {
@@ -408,4 +415,21 @@ li {
   text-decoration: underline;
   color: #5C5C5C;
   font-weight: bolder;
+}
+
+.item a{
+  color: #4D5256;
+}
+
+.item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.item a p {
+  display: inline;
+}
+
+.view-all {
+  margin-left: 5px;
 }

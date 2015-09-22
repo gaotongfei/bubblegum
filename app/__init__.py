@@ -29,4 +29,7 @@ def create_app(config_name):
     from .nodes import bp as nodes_bp
     app.register_blueprint(nodes_bp)
 
+    from .admin import bp as admin_bp
+    app.register_blueprint(admin_bp)
+
     return app
