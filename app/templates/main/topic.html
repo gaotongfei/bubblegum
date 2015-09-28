@@ -13,14 +13,16 @@
   <a href="#" class="topic-avatar"><img class="avatar" src="{{ topic.avatar }}" height="40px" width="40px"></a>
   <div class="panel-title">
     <h6 style="margin-left: 6px;">{{ topic.title }}</h6>
-    <a href="#" class="topic-username">{{ topic.username }}</a> ·
-    {{ time_delta(topic.post_time) }} ·
-    {{ click_count }} clicks ·
-    {% if saved %}
-      <a href="/unsave/{{ topic.id }}">unsave</a>
-    {% else %}
-      <a href="/save/{{ topic.id }}">save</a>
-    {% endif %}
+    <div class="panel-info">
+      <a href="#" class="topic-username">{{ topic.username }}</a> ·
+      {{ time_delta(topic.post_time) }} ·
+      {{ click_count }} clicks ·
+      {% if saved %}
+        <a href="/unsave/{{ topic.id }}">unsave</a>
+      {% else %}
+        <a href="/save/{{ topic.id }}">save</a>
+      {% endif %}
+    </div>
  </div>
 </div>
 <div class="panel-body topic-body">{{ topic.body_md | safe }}</div>

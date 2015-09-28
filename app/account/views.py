@@ -49,13 +49,11 @@ def settings(type):
     account_form = AccountForm()
     if type == 'profile':
         if form.validate_on_submit():
-            user.website = form.website.data
             user.bio = form.bio.data
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main.index'))
         form.username.data = user.username
-        form.website.data = user.website
         form.bio.data = user.bio
         return render_template('account/settings.html', form=form, type=type)
     if type == 'account':
@@ -75,15 +73,13 @@ def settings(type):
 @bp.route('/user/<username>', methods=['GET', 'POST'])
 def user(username):
     user = User.query.filter_by(username=username).first()
+    show_saved_topics_link = False
+    if current_user.is_authenticated and \
+            current_user.username == username:
+        show_saved_topics_link = True
+
     if user is None:
         abort(404)
-    saved_topics = list(r.smembers('user-saved:'+str(user.id)))
-    id_titles = []
-    for i in saved_topics:
-        id_title = {}
-        id_title['id'] = i
-        id_title['title'] = Post.query.filter_by(id=i).first().title
-        id_titles.append(id_title)
 
     user_posts = Post.query.filter_by(username=username).\
         order_by(Post.post_time.desc()).limit(5).all()
@@ -93,4 +89,20 @@ def user(username):
                            user=user,
                            user_posts=user_posts,
                            user_replies=user_replies,
-                           id_titles=id_titles)
+                           show_saved_topics_link=show_saved_topics_link)
+
+
+@bp.route('/saved-topics/<username>', methods=['GET', 'POST'])
+def saved_topics(username):
+    if current_user.is_authenticated() and \
+            current_user.username == username:
+        user = User.query.filter_by(username=username).first()
+        saved_topics = list(r.smembers('user-saved:'+str(user.id)))
+        id_titles = []
+        for i in saved_topics:
+            id_title = {}
+            id_title['id'] = i
+            id_title['title'] = Post.query.filter_by(id=i).first().title
+            id_titles.append(id_title)
+        return render_template('account/saved-topics.html',
+                               id_titles=id_titles)

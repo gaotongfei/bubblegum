@@ -11,7 +11,6 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False, index=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password_hash = db.Column(db.String(128))
-    website = db.Column(db.String(50))
     bio = db.Column(db.String(200))
 
     @property

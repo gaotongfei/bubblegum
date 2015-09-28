@@ -16,22 +16,22 @@
         <div class="user-info">
           <div class="left-avatar"><img src="{{ user.avatar(60) }}"></div>
           <div class="user-profile">
-            <div class="">{{ user.username }}</div>
+            <div class="bold">{{ user.username }}</div>
             <div class="">{{ user.created.strftime('%Y-%m-%d %H:%M:%S') }}</div>
             <div class="id">NO.{{ user.id }}</div>
+            {% if show_saved_topics_link %}<div><a href="/saved-topics/{{ user.username }}">saved topics</a></div>{% endif %}
           </div>
         </div>
+        {% if user.bio != none %}
         <div class="other-info">
-          <center><div class="">{% if user.website != None %}<a href="{{ user.website }}" style="color: #008E59;">{{ user.website }}</a>{% endif %}</div></center>
+          <center>{{ user.bio }}</center>
         </div>
-        <div class="other-info">
-          <center><div class="">{% if user.bio != none %}{{ user.bio }}{% endif %}</div></center>
-        </div>
+        {% endif %}
       </div>
       </div>
       <div class="col-md-7">
         <div class="panel panel-default">
-          <div class="sm-panel-heading panel-title"><p>recent posts</p></div>
+          <div class="sm-panel-heading panel-title item">recent posts</div>
           {% if user_posts %}
             {% for user_post in user_posts %}
               <div class="panel-body item">
@@ -44,8 +44,7 @@
           {% if user_posts|length >= 5 %}<div class="sm-panel-heading panel-title item"><a href="#" class="view-all">view all</a></div>{% endif %}
         </div>
         <div class="panel panel-default">
-          <div class="sm-panel-heading panel-title item"><p>recent replies</p>
-          </div>
+          <div class="sm-panel-heading panel-title item">recent replies</div>
           {% if user_replies %}
             {% for user_reply in user_replies %}
             <div class="panel-body item">
@@ -55,11 +54,13 @@
           {% else %}
           <div class="panel-body">None</div>
           {% endif %}
-          {% if user_replies|length > 5 %}<div class="sm-panel-heading panel-title"><a href="#" class="view-all">view all</a>{% endif %}
+          {% if user_replies|length > 5 %}
+          <div class="sm-panel-heading panel-title">
+            <a href="#" class="view-all">view all</a>{% endif %}
+          </div>
         </div>
       </div>
       <div class="col-md-1"></div>
     </div>
   </div>
-</div>
 {% endblock %}

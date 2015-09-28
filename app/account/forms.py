@@ -30,7 +30,6 @@ class LoginForm(Form):
 class ProfileForm(Form):
     username = StringField('username')
     email = StringField('email')
-    website = StringField('website', validators=[URL()])
     bio = StringField('bio')
     submit = SubmitField('submit')
 

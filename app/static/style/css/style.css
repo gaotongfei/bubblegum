@@ -119,8 +119,11 @@ textarea {
   margin-left: 80px;
 }
 
+.bold {
+  font-size: 20px;
+}
 .user-info {
-  height: 100px;
+  height: 140px;
   padding: 20px;
 }
 
@@ -133,6 +136,7 @@ textarea {
 .left-avatar {
   float: left;
   margin-left: -5px;
+  margin-top: 20px;
 }
 
 .user-profile {
@@ -335,13 +339,17 @@ textarea {
   color: white;
 }
 
+.panel-title .panel-info {
+  margin-left: 4px;
+}
+
 .settings li {
   height: 40px;
   line-height: 40px;
   border-bottom: 1px solid #eee;
 }
 
-li {
+.statistics li {
   list-style: none;
 }
 
@@ -422,8 +430,7 @@ li {
 }
 
 .item {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 0 5px 5px;
 }
 
 .item a p {

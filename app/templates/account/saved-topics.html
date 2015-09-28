@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block subtitle %}saved topics{% endblock %}
+{% block content %}
+{% if id_titles %}
+  <ul class="list-group">
+  {% for id_title in id_titles %}
+    <li class="list-group-item post-title">
+      <a href="{{ url_for('main.topic', id=id_title['id']) }}">{{ id_title['title'] }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
