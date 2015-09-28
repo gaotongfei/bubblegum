@@ -22,7 +22,7 @@ def mention_username(content):
 
 def bleach_html(content):
     allowed_tags = ['a', 'b', 'blockquote', 'code', 'em', 'li', 'ol', 'pre',
-                 'strong', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'p', 'img']
+                    'strong', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'p', 'img']
     allowed_attrs = {'a': ['href', 'rel'],
                      'img': ['src', 'alt']}
     return bleach.linkify(bleach.clean(

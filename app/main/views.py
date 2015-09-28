@@ -91,7 +91,7 @@ def topic(id):
         avatar_url = gravatar_url(current_user.email, 40)
         comment = Comment(
             topic_id=id,
-            comment=bleach_html(markdown(mention(form.comment.data))),
+            comment=bleach_html(mention(form.comment.data)),
             username=current_user.username,
             avatar=avatar_url)
         post = Post.query.filter_by(id=id).first()
