@@ -1,7 +1,7 @@
 from datetime import datetime
 from functools import wraps
 from hashlib import md5
-from flask.ext.login import current_user
+from flask_login import current_user
 from flask import abort
 
 
@@ -26,7 +26,7 @@ def gravatar_url(email, size):
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if current_user.is_authenticated():
+        if current_user.is_authenticated:
             if current_user.id != 1:
                 abort(403)
             return f(*args, **kwargs)

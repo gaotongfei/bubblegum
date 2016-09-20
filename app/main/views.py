@@ -3,7 +3,7 @@ from flask import (render_template, redirect, url_for,
 from .forms import PostTopicForm, CommentForm
 from . import bp
 from .. import db
-from flask.ext.login import current_user, login_required
+from flask_login import current_user, login_required
 from ..models import Post, Comment, Notification, User, Nodes
 from ..helpers import gravatar_url, admin_required
 import mistune
@@ -32,7 +32,7 @@ def index():
     nodes = Nodes.query.order_by(Nodes.create_time.desc()).all()
     for n in nodes:
         r.sadd('nodes', n)
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         message_count = Notification.query.filter_by(
             to_id=current_user.username).filter_by(is_read=0).count()
         return render_template(
@@ -125,7 +125,7 @@ def topic(id):
 
     saved = False
 
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         message_count = Notification.query.filter_by(to_id=current_user.username).\
             filter_by(is_read=0).count()
         saved_topics = list(r.smembers('user-saved:' + str(current_user.id)))
@@ -170,7 +170,7 @@ def delete(id):
 @bp.route('/message/<username>', methods=['GET', 'POST'])
 @login_required
 def message(username):
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         if current_user.username != username:
             abort(403)
         else:
@@ -206,6 +206,7 @@ def search():
     )
 
 
+'''
 @bp.route('/search_results/<query>')
 def search_results(query):
     results = Post.query.whoosh_search(query, 10, or_=True).all()
@@ -214,6 +215,7 @@ def search_results(query):
         query=query,
         results=results
     )
+'''
 
 
 @bp.route('/save/<id>', methods=['GET', 'POST'])
