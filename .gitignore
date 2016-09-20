@@ -7,3 +7,4 @@ app/static/bower_components/*
 *.db
 migrations/*
 app/whoosh_index/*
+py2venv

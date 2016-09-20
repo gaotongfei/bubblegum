@@ -1,6 +1,6 @@
 from flask import (render_template, redirect, url_for, request, flash,
                    abort)
-from flask.ext.login import (login_user, logout_user, login_required,
+from flask_login import (login_user, logout_user, login_required,
                              current_user)
 from . import bp
 from .. import db
@@ -94,7 +94,7 @@ def user(username):
 
 @bp.route('/saved-topics/<username>', methods=['GET', 'POST'])
 def saved_topics(username):
-    if current_user.is_authenticated() and \
+    if current_user.is_authenticated and \
             current_user.username == username:
         user = User.query.filter_by(username=username).first()
         saved_topics = list(r.smembers('user-saved:'+str(user.id)))

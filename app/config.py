@@ -4,10 +4,10 @@ basedir = os.path.abspath(os.path.dirname(__name__))
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hack me you bitch'
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'a_really_strong_key_here'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'sqlite.db')
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    WHOOSH_BASE = 'app/whoosh_index'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     @staticmethod
     def init_app(app):
@@ -32,5 +32,5 @@ class DeployConfig(Config):
 config = {
     'default': Config,
     'testing': TestConfig,
-    'deploy' : DeployConfig
+    'deploy': DeployConfig
 }

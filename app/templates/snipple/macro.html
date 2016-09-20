@@ -1,6 +1,6 @@
 {% macro navigation(current='index') %}
 <div class="container">
-{% if current_user.is_authenticated() %}
+{% if current_user.is_authenticated %}
   <ul class="nav navbar-nav">
     <li {% if current == 'index' %}class="active"{% endif %}><a href="/">Bubble</a></li>
     <li>

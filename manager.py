@@ -1,16 +1,14 @@
 from flask import g
-from flask.ext.script import Manager, Shell
-from flask.ext.migrate import Migrate, MigrateCommand
+from flask_script import Manager, Shell
+from flask_migrate import Migrate, MigrateCommand
 from app import create_app, db
 from app.models import User, Post
-import flask.ext.whooshalchemy as whooshalchemy
 from app.main.forms import SearchForm
 
 
-app = create_app('deploy')
+app = create_app('default')
 manager = Manager(app)
 migrate = Migrate(app, db)
-whooshalchemy.whoosh_index(app, Post)
 
 
 @app.before_request
