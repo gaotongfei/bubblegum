@@ -1,3 +1,7 @@
+[![Python Version](https://img.shields.io/badge/python-2&3-brightgreen.svg?style=flat)]()
+[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)]()
+[![Code Health](https://landscape.io/github/gaotongfei/bubblegum/master/landscape.svg?style=flat)](https://landscape.io/github/gaotongfei/bubblegum/master)
+
 # Bubblegum
 
 Bubblegum 是一个大二时写的基于flask实现的论坛, 前端界面写的挺丑的, 现在有重构的计划, 请戳[这里](https://github.com/getquillapp/quill)
